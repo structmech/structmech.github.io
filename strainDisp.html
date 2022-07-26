@@ -49,32 +49,24 @@ figure figcaption {
 <h1 style="max-width: 800px; font-size: medium;text-align: center;">STRAIN DISPLACEMENT RELATIONSHIPS <br>
 </h1>
 <p>
-The displacements of a point \((x,y,z)\) in a three dimensional body in \(x,y,z\) directions are denoted with the letters \(u,v,w\) respectively.
-\begin{equation}
-(ds)^2=(dx)^2+(dv)^2\Rightarrow \Big(\frac{ds}{dx}\Big)^2=1+\Big(\frac{dv}{dx}\Big)^2\Rightarrow \frac{ds}{dx}=\sqrt{1+\Big(\frac{dv}{dx}\Big)^2}
-\label{eq:dssq}
-\end{equation}
-\begin{equation}
-\rho d\theta =ds\Rightarrow \rho=\frac{ds}{d\theta}\Rightarrow \frac{1}{\rho} = \frac{d\theta}{ds}
-\label{eq:oneOverRho}
-\end{equation}
-\begin{equation}
-\tan d\theta =\frac{dv}{dx}\Rightarrow d\theta=\tan^{-1}\Big(\frac{dv}{dx}\Big) \Rightarrow \frac{d\theta}{dx}= \frac{1}{1+(\frac{dv}{dx})^2}\frac{d^2v}{dx^2}
-\label{eq:tanDtheta}
-\end{equation}
+The displacements of a point \((x,y,z)\) in a three dimensional body in \(x,y,z\) directions are denoted with the letters \(u,v,w\) respectively. Displacement is a function of position, so we can write \(u(x,y,z),v(x,y,z),w(x,y,z)\). We distinguish between normal strains due to the elongation or shortening of an element inside the body and the shearing strains due to the distortion of that same element. The normal strains are denoted with \(\epsilon_{xx},\epsilon_{yy},\epsilon_{zz}\) and the shearing strains are denoted with \(\epsilon_{xy},\epsilon_{yz},\epsilon_{xz}\). Fig. 1 shows the displacement of an infinitesimal body in \(x\) direction 
+
 <p>The variables \(\rho,d\theta,ds,dv,dx\) are shown in Fig. 1 where the beam lies in the \(x-y\) plane and the \(z\) direction is perpendicular to the plane of the beam. 
     <figure class="center">
       <img  src="https://raw.githubusercontent.com/structmech/images/main/radCurvature.svg" width="300"/> 
       <figcaption> <b>Fig. 1.</b> Elastic curve</figcaption>	
     </figure>
-    </p>
 </p>
 <p>
-    In Eqs.\eqref{eq:dssq} and \eqref{eq:tanDtheta}, \(\Big(\frac{dv}{dx}\Big)^2\) can be neglected due to its small order of magnitude which leads to Eq.\eqref{eq:afterNeglect}
-    \begin{equation}
-\frac{ds}{dx}=1,\quad\frac{d\theta}{dx}=v^{\prime\prime}\Rightarrow \frac{d\theta}{ds}=\frac{d\theta}{dx}\frac{dx}{ds}=\frac{d\theta}{dx}\frac{1}{\frac{ds}{dx}}\Rightarrow \boxed{\frac{1}{\rho}=\frac{d\theta}{ds}=v^{\prime\prime}}
-\label{eq:afterNeglect}
-\end{equation}
+  Using the definition of strain, \(\epsilon_{xx}\) can be calculated as in Eq.\eqref{eq:epsxx}
+  \begin{equation}
+  \epsilon_{xx}=\lim_{\Delta x\to 0}\frac{[L_{x1}]-[L_{x0}]}{L_{x0}}\lim_{\Delta x\to 0}\frac{[x+\Delta x+u(x+\Delta x,y,z)-(x+u(x,y,z))]-[\Delta x]}{\Delta x}=\frac{\partial u}{\partial x}
+  \label{eq:epsxx}
+  \end{equation}
+</p>
+<p>
+    Similarly, we can also obtain \(\epsilon_{yy}=\displaystyle\frac{\partial v}{\partial y}\) and \(\epsilon_{zz}=\displaystyle\frac{\partial w}{\partial z}\)
+    
 </p>
 <p>
 The distribution of the normal stress along the height of the beam cross-section is shown in Fig. 2 where the stresses are in the elastic range. In fig. 2 \(N.A.\) denotes the neutral axis where the normal stress is zero.
