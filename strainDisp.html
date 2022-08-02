@@ -46,6 +46,8 @@ figure figcaption {
 </head>
 <body>
 
+<h1 style="max-width: 800px; font-size: medium;text-align: left;"><a href="./index.html">HOME</a> <br>
+</h1>
 <h1 style="max-width: 800px; font-size: medium;text-align: center;">STRAIN DISPLACEMENT RELATIONSHIPS <br>
 </h1>
 <p>
@@ -69,39 +71,42 @@ The displacements of a point \((x,y,z)\) in a three dimensional body in \(x,y,z\
     
 </p>
 <p>
-The distribution of the normal stress along the height of the beam cross-section is shown in Fig. 2 where the stresses are in the elastic range. In fig. 2 \(N.A.\) denotes the neutral axis where the normal stress is zero.
-<figure class="center">
-    <img  src="https://raw.githubusercontent.com/structmech/images/main/stressDistElastic.svg" width="350"/> 
-    <figcaption> <b>Fig. 2.</b> Normal stress distribution</figcaption>	
+  <figure class="center">
+    <img  src="./IMAGES/shearingStrain.svg" width="300"/> 
+    <figcaption> <b>Fig. 2.</b> Shearing strain</figcaption>	
   </figure>
-
-</p>
-
-<p>
-    The bending moment \(M_z\) that causes the stresses in Fig. 2 can be calculated as in Eq.\eqref{eq:Mz} where \(E\) is the modulus of elasticity and \(\epsilon_x\) is the normal strain.
-    \begin{equation}
-    M_z=-\int_A\sigma_x y dA=-E\int_A\epsilon_x y dA
-    \label{eq:Mz}
-    \end{equation}
 </p>
 <p>
-    The relationship between the normal strain \(\epsilon_x\) and the radius of curvature \(\rho\) is illustrated in Fig. 3 where the height of the beam is exaggerated.
-
-    <figure class="center">
-        <img  src="https://raw.githubusercontent.com/structmech/images/main/exaggerated.svg" width="350"/> 
-        <figcaption> <b>Fig. 3.</b> Normal strains above and below the neutral axis due to bending</figcaption>	
-      </figure>
-</p>
-<p>
-In Fig. 3 the dashed line is shorter than the netral axis after bending due to the compressive strains above \(N.A.\) where \(y>0\). The length of a fiber along the beam's length is denoted with \(L_1\). The initial length of this fiber before bending is equal to \(L_0\) which is the length of the neutral axis where the normal strain is equal to zero. Using these lengths before and after bending, the normal strain be calculated as in Eq.\eqref{eq:epsx}
+The blue rectangular shape in Fig. 2 belongs to the initial configuration of a body on the x-y plane before shearing deformation. After the deformation, this rectangle is distorted by the angles \(\alpha\) and \(\beta\). The shearing strain in the x-y plane is defined as in Eq.\eqref{eq:epsxy}
 \begin{equation}
-\epsilon_x=\frac{L_1-L_0}{L_0}=\frac{(\rho-y)\theta-\rho\theta}{\rho\theta}=-\frac{y}{\rho}
-\label{eq:epsx}
+\epsilon_{xy}=\epsilon_{yx}=\frac{1}{2}(\alpha +\beta)
+\label{eq:epsxy}
 \end{equation}
-Inserting Eq.\eqref{eq:afterNeglect} in Eq.\eqref{eq:epsx} and Eq.\eqref{eq:epsx} in Eq.\eqref{eq:Mz} we obtain Eq.\eqref{eq:Mz2}
+</p>
+<p>
+  In the linear elastic range the angles of distortion are small and we can assume \(\alpha \approxeq \tan\alpha \), \(\beta\approxeq\tan\beta\) without introducing any considerable errors into the calculation. Furthermore, Eq.\eqref{eq:partialShear} holds true.
+  \begin{equation}
+  \begin{split}
+\alpha\Delta x=\frac{\partial v}{\partial x}\Delta x\Rightarrow\boxed{\alpha=\frac{\partial v}{\partial x}},\quad \beta\Delta y=\frac{\partial u}{\partial y}\Delta y\Rightarrow\boxed{\beta=\frac{\partial u}{\partial y}}\Rightarrow \epsilon_{xy}=\frac{1}{2}\Big(\frac{\partial v}{\partial x}+\frac{\partial u}{\partial y}\Big)
+\end{split}
+\label{eq:partialShear}
+\end{equation}
+Similarly it can be shown that \(\epsilon_{yz}=\epsilon_{zy}=\frac{1}{2}\Big(\frac{\partial v}{\partial z}+\frac{\partial w}{\partial y}  \Big)\) and \(\epsilon_{xz}=\epsilon_{zx}=\frac{1}{2}\Big(\frac{\partial u}{\partial z}+\frac{\partial w}{\partial x}\Big)\). These results can be summarized in a strain matrix (or tensor) as shown in Eq.\eqref{eq:strmat}
 \begin{equation}
-M_z=-\int_A\sigma_x y dA=-E\int_A\Big(-\frac{y}{\rho}\Big) y dA=\frac{EI_z}{\rho}=EI_zv^{\prime\prime}
-\label{eq:Mz2}
+\epsilon=\begin{bmatrix}
+\epsilon_{xx} & \epsilon_{xy} & \epsilon_{xz} \\
+\epsilon_{yx} & \epsilon_{yy} & \epsilon_{yz} \\
+\epsilon_{zx} & \epsilon_{zy} & \epsilon_{zz}
+\end{bmatrix}=\begin{bmatrix}
+\frac{\partial u}{\partial x} & \frac{1}{2}\Big(\frac{\partial v}{\partial x}+\frac{\partial u}{\partial y}\Big) & \frac{1}{2}\Big(\frac{\partial u}{\partial z}+\frac{\partial w}{\partial x}\Big) \\
+\frac{1}{2}\Big(\frac{\partial v}{\partial x}+\frac{\partial u}{\partial y}\Big) & \frac{\partial v}{\partial y} & \frac{1}{2}\Big(\frac{\partial v}{\partial z}+\frac{\partial w}{\partial y}  \Big) \\
+\frac{1}{2}\Big(\frac{\partial u}{\partial z}+\frac{\partial w}{\partial x}\Big) & \frac{1}{2}\Big(\frac{\partial v}{\partial z}+\frac{\partial w}{\partial y}  \Big) & \frac{\partial w}{\partial z}
+\end{bmatrix}
+\label{eq:strmat}
 \end{equation}
+</p>
+<p>
+  <a style="text-align:left" href="./index.html">HOME</a>
 </p>
 </body>
+ 
