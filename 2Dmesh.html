@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<style>
+    p{
+        max-width: 800px;
+        min-width: 100px;
+        background-color: rgb(203, 226, 234);
+        text-align: justify;
+    }
+</style>
+<body>
+
+<canvas id="meshCanvas" width="800" height="400"
+style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script>
+var canvas = document.getElementById("meshCanvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "rgb(70, 226, 234)";
+ctx.fillRect(70,150,150,75);
+</script>
+
+</body>
+</html>
