@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        p{
+          max-width: 800px;
+          min-width: 100px;
+          background-color: white;
+          text-align: justify;
+        }
+        code{
+            max-width: 800px;
+            font-size:medium;
+        }
+        ol{
+            max-width: 800px;
+            text-align: left;
+        }
+        .left, .right, .center {
+            display: inline-block;
+        }
+        figure figcaption {
+            text-align: center;
+        }
+        .MathJax_Display {
+            text-align: center !important;
+        }
+        </style>
+        <!-- The below two lines are for MathJax. -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <!--The below lines are for equation numbering-->
+        <script>
+            MathJax = {
+              tex: {
+                tags: 'ams'  // should be 'ams', 'none', or 'all'
+              }
+            };
+            </script>
+            <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+        <!-- The below lines are for highlightjs-->
+        <!-- For different styles check https://cdnjs.com/libraries/highlight.js -->
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/intellij-light.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+        <script>hljs.highlightAll();</script>
+  </head>
+<body>
+    <h1 style="max-width: 800px; font-size: medium;text-align: left;"><a href="./index.html">HOME</a> <br>
+    </h1>
+    <h1 style="max-width: 800px; font-size: medium;text-align: center;">SOLVING 2D TRUSSES WITH THE STIFFNESS METHOD <br>
+    </h1>
+    <p>Trusses consist of axial load carrying elements. Therefore, the force displacement relationships of truss elements can be obtained based on the elongation of a bar with the initial length \(L\), cross-sectional area \(A\) and elasticity modulus \(E\)  under the axial load \(F\).</p>
+ <p>
+    \begin{equation}
+  \epsilon=\frac{\Delta L}{L}=\frac{\sigma}{E}=\frac{F}{EA}\Rightarrow F=\frac{EA}{L}\Delta L
+  \label{eq:DeltaL}
+  \end{equation}
+ </p>
+<p>
+    Notice that the force displacement relationship in Eq.\eqref{eq:DeltaL} resembles the equation \(F=ku\) for the displacement \(u\) of a spring with stiffness \(k\) under the applied force \(F\). In \eqref{eq:DeltaL} \(\frac{EA}{L}\) is the stiffness.<br> Every truss element has two end points (nodes). Under external loads the positions of these nodes may change. The total displacement of a node in a 2D truss system can be described as a combination of a horizontal \((u)\) and a vertical \((v)\) displacement component.<br>
+    We start describing the load displacemnt relationship in a truss element with the case when the second node undergoes a horizontal displacement \(u_2\) only and the nodes are fixed in every other direction. <br>  
+</p>
+<p>
+    <strong>Case 1:</strong>
+    <figure class="center">
+      <img  src="./IMAGES/Case1truss.svg" width="300"/> 
+      <figcaption> <b>Fig. 1.</b> Horizontal displacement of node 2</figcaption>	
+    </figure>
+</p>
+<p>
+    In Fig. 1 the red line shows the initial position of the truss member and the blue line shows the truss member after the displacement of node 2 an amount \(u_2\) to the right. After the application of \(u_2\) the member elongates by \(u_2\cos\theta\). The force acting on node 2 to cause this elongation is
+</p>
+<p>
+  \begin{equation}
+  \begin{gathered}
+  {F_2}^{(1)}=\frac{EA}{L}u_2\cos\theta\Rightarrow {F_{2x}}^{(1)}=\frac{EA}{L}u_2\cos^2\theta,\hspace{0.5em}{F_{2y}}^{(1)}=\frac{EA}{L}u_2\cos\theta\sin\theta \\
+  \sum F_x=0\Rightarrow {F_{1x}}^{(1)}=-\frac{EA}{L}u_2\cos^2\theta \\
+  \sum F_y=0\Rightarrow {F_{1y}}^{(1)}=-\frac{EA}{L}u_2\cos\theta\sin\theta
+  \end{gathered}
+  \label{eq:F2one}
+  \end{equation}
+ </p>
+ <p>
+    <strong>Case 2:</strong>
+    <figure class="center">
+      <img  src="./IMAGES/Case2truss.svg" width="250"/> 
+      <figcaption> <b>Fig. 2.</b> Vertical displacement of node 2</figcaption>	
+    </figure>
+</p>
+<p>
+    In Fig. 2 node 2 undergoes an upward displacement of \(v_2\) while every other node displacement is prevented. After the application of \(v_2\) the member elongates by \(v_2\sin\theta\). The force acting on node 2 to cause this elongation is
+</p>
+<p>
+    \begin{equation}
+    \begin{gathered}
+    {F_2}^{(2)}=\frac{EA}{L}v_2\sin\theta\Rightarrow {F_{2x}}^{(2)}=\frac{EA}{L}v_2\sin\theta\cos\theta,\hspace{0.5em}{F_{2y}}^{(2)}=\frac{EA}{L}v_2\sin^2\theta \\
+    \sum F_x=0\Rightarrow {F_{1x}}^{(2)}=-\frac{EA}{L}v_2\sin\theta\cos\theta \\
+    \sum F_y=0\Rightarrow {F_{1y}}^{(2)}=-\frac{EA}{L}v_2\sin^2\theta
+    \end{gathered}
+    \label{eq:F2two}
+    \end{equation}
+</p>
+<p>
+    <strong>Case 3:</strong>
+    <figure class="center">
+      <img  src="./IMAGES/Case3truss.svg" width="250"/> 
+      <figcaption> <b>Fig. 3.</b> Horizontal displacement of node 1</figcaption>	
+    </figure>
+</p>
+<p>
+    In Fig. 3 node 1 undergoes a displacement of \(u_1\) to the right while every other node displacement is constrained. After the application of \(u_1\) the member shortens by \(u_1\cos\theta\). The force acting on node 1 to cause this shortening is
+</p>
+<p>
+    \begin{equation}
+    \begin{gathered}
+    {F_1}^{(3)}=\frac{EA}{L}u_1\cos\theta\Rightarrow {F_{1x}}^{(3)}=\frac{EA}{L}u_1\cos^2\theta,\hspace{0.5em}{F_{1y}}^{(3)}=\frac{EA}{L}u_1\cos\theta\sin\theta \\
+    \sum F_x=0\Rightarrow {F_{2x}}^{(3)}=-\frac{EA}{L}u_1\cos^2\theta \\
+    \sum F_y=0\Rightarrow {F_{2y}}^{(3)}=-\frac{EA}{L}u_1\cos\theta\sin\theta
+    \end{gathered}
+    \label{eq:F1three}
+    \end{equation}
+</p>
+<p>
+    <strong>Case 4:</strong>
+    <figure class="center">
+      <img  src="./IMAGES/Case4truss.svg" width="250"/> 
+      <figcaption> <b>Fig. 4.</b> Vertical displacement of node 1</figcaption>	
+    </figure>
+</p>
+<p>
+    In Fig. 4 node 1 undergoes an upward displacement of \(v_1\) while every other node displacement is constrained. After the application of \(v_1\) the member shortens by \(v_1\sin\theta\). The force acting on node 1 to cause this shortening is
+</p>
+<p>
+    \begin{equation}
+    \begin{gathered}
+    {F_1}^{(4)}=\frac{EA}{L}v_1\sin\theta\Rightarrow {F_{1x}}^{(4)}=\frac{EA}{L}v_1\sin\theta\cos\theta,\hspace{0.5em}{F_{1y}}^{(4)}=\frac{EA}{L}v_1\sin^2\theta \\
+    \sum F_x=0\Rightarrow {F_{2x}}^{(4)}=-\frac{EA}{L}v_1\sin\theta\cos\theta \\
+    \sum F_y=0\Rightarrow {F_{2y}}^{(4)}=-\frac{EA}{L}v_1\sin^2\theta
+    \end{gathered}
+    \label{eq:F1four}
+    \end{equation}
+</p>
+<p>
+    If we combine all of the above presented four cases, we obtain the load-displacement relationship for a bar under axial loading
+</p>
+<p>
+    \begin{equation}
+    \begin{split}
+    F_{1x}&={F_{1x}}^{(1)}+{F_{1x}}^{(2)}+{F_{1x}}^{(3)}+{F_{1x}}^{(4)}\\
+    &=\frac{EA}{L}\Big(-u_2\cos^2\theta-v_2\sin\theta\cos\theta+u_1\cos^2\theta+v_1\sin\theta\cos\theta\Big)\\
+    F_{1y}&={F_{1y}}^{(1)}+{F_{1y}}^{(2)}+{F_{1y}}^{(3)}+{F_{1y}}^{(4)}\\
+    &=\frac{EA}{L}\Big(-u_2\cos\theta\sin\theta-v_2\sin^2\theta+u_1\cos\theta\sin\theta+v_1\sin^2\theta\Big)\\
+    F_{2x}&={F_{2x}}^{(1)}+{F_{2x}}^{(2)}+{F_{2x}}^{(3)}+{F_{2x}}^{(4)}\\
+    &=\frac{EA}{L}\Big(u_2\cos^2\theta+v_2\sin\theta\cos\theta-u_1\cos^2\theta-v_1\sin\theta\cos\theta\Big)\\
+    F_{2y}&={F_{2y}}^{(1)}+{F_{2y}}^{(2)}+{F_{2y}}^{(3)}+{F_{2y}}^{(4)}\\
+    &=\frac{EA}{L}\Big(u_2\cos\theta\sin\theta+v_2\sin^2\theta-u_1\cos\theta\sin\theta-v_1\sin^2\theta\Big)
+    \end{split}
+    \label{eq:combineFour}
+    \end{equation}
+</p>
+<p>
+    By letting \(s=\sin\theta\) and \(c=\cos\theta\) we can write Eq.\eqref{eq:combineFour} in matrix form as follows
+</p>
+<p>
+    \begin{equation}
+    \begin{gathered}
+    \begin{Bmatrix}F_{1x}\\F_{1y}\\F_{2x}\\F_{2y}\end{Bmatrix}=
+    \frac{EA}{L}\begin{bmatrix}c^2 & sc & -c^2 & -sc\\
+    sc & s^2 & -sc & -s^2\\
+    -c^2 & -sc & c^2 & sc\\
+    -sc & -s^2 & sc & s^2\end{bmatrix}
+    \begin{Bmatrix}u_1\\ v_1 \\u_2\\v_2\end{Bmatrix}\\
+    \mathbf{F_e}=\mathbf{K_e}\mathbf{\Delta_e}
+    \end{gathered}
+    \label{eq:forceDispMatrix}
+    \end{equation}
+In Equation \eqref{eq:forceDispMatrix} \(\mathbf{K_e}\) is the element stiffness matrix of a bar element. Truss systems in 2D can be solved by combining the stiffness matrices of all the bar elements of the truss system and building the global system stiffness matrix. Then, the global system stiffness matrix can be split into its four components \(\mathbf{K_{ff}},\mathbf{K_{fs}},\mathbf{K_{sf}},\mathbf{K_{ss}}\) as in Equation\eqref{eq:Kffetc} where \(\mathbf{K_{fs}}=\mathbf{K_{sf}}\).
+\begin{equation}
+\begin{Bmatrix}\mathbf{F_f} \\ \mathbf{F_s} \end{Bmatrix}=
+\begin{bmatrix}\mathbf{K_{ff}} & \mathbf{K_{fs}}\\\mathbf{K_{sf}} & \mathbf{K_{ss}} \end{bmatrix}
+\begin{Bmatrix}\mathbf{\Delta_f}\\\mathbf{0}\end{Bmatrix}
+\label{eq:Kffetc}
+\end{equation} 
+In Equation\eqref{eq:Kffetc}, \(\mathbf{F_f}\) contains the components of the external forces acting on the nodes in directions where the displacement is not constrained and therefore reaction forces are non-existent. On the other hand, \(\mathbf{F_s}\) contains the support reaction components at the nodes where the displacement is prevented. \(\mathbf{\Delta_f}\) contains the unknown displacement components at the nodes in direections where the displacements are not constrained. The methodology of building the global system stiffness matrix from the element stiffness matrices is demonstrated in the following example. 
+</p>
+<p>
+    <strong>Example 1:</strong>
+    <figure class="center">
+      <img  src="./IMAGES/TrussEx1.svg" width="275"/> 
+      <figcaption> <b>Fig. 5.</b> Truss system under external loading</figcaption>	
+    </figure>
+</p>
+<p>
+    In Example 1 the nodes of the truss system have been numbered from 0 to 2. All the members have the elasticity modulus of \(E=2\cdot 10^5MPa\). The cross-sectional area of the element 0-2 is \(A_0=6000mm^2\) and the cross-sectional area of the element 1-2 is \(A_1=7000mm^2\). The first thing we need to do is to number the elements in the system as well. After that we need to also give numbers to every displacement that a node could possibly undergo. In the system in Fig. 5, the only node that could experience a displacement is the node number 2. Fig. 6 shows the element and displacement numbers for the system in Fig. 5.
+</p>
+<p>
+    <figure class="center">
+      <img  src="./IMAGES/TrussEx1Dofs.svg" width="300"/> 
+      <figcaption> <b>Fig. 6.</b> Element and displacement numbers</figcaption>	
+    </figure>
+</p>
+<p>
+Next, using Equation\eqref{eq:forceDispMatrix} we write down the stiffness matrices of the members 0 and 1 together with the displacement numbers belonging to these elements. For element 0 the element angle of inclination is \(45^{\circ}\) and for element 1 the angle is \(135^{\circ}\). These angles start from the horizontal line going through the node with the smaller node number and increase in the counterclockwise direction. These angles correspond to the \(c\) and \(s\) values of \(c=s=\sqrt{2}/2\) for element 0 and \(c=-\sqrt{2}/2,\hspace{0.5em}s=\sqrt{2}/2\) for element 1. 
+
+    <figure class="center">
+      <img  src="./IMAGES/StiffnessesEx1.svg" width =700/> 
+      <figcaption> <b>Fig. 7.</b> Element stiffness matrices (Example 1)</figcaption>	
+    </figure>
+</p>
+<p>
+    In this example both members have the same length and elasticity modulus, so \(E_0=E_1=E\) and \(L_0=L_1=L=5000\sqrt{2}\text{ mm}\). In the system of Fig. 5, the unknowns are the displacement of node 2 and the support reactions at the nodes 0 and 1. The forces acting on the node 2 in 0 and 1 directions are given as \(600\cos{25}=543.79 kN\) and \(600\sin{25}=253.57kN\) respectively. This leads to the following \(\mathbf{F_f}\), \(\mathbf{\Delta_f}\) vectors and the \(\mathbf{K_{ff}}\) matrix.
+    <figure class="center">
+        <img  src="./IMAGES/FfDeltafKff.svg" width =700/> 
+        <figcaption> <b>Fig. 8.</b> \(\mathbf{K_{ff}},\mathbf{\Delta_f},\mathbf{F_f}\) for Example 1
+        </figcaption>	
+      </figure>
+   <br> 
+</p>
+<p>
+    In Fig. 8 the matrix indices start from 0. The unknowns \(\Delta_0,\Delta_1\) can be found as in Equation\eqref{eq:Deltas}.
+    \begin{equation}
+    \begin{gathered}
+    \mathbf{F_f}=\mathbf{K_ff\Delta_f}\Rightarrow\mathbf{\Delta_f}=\mathbf{K_{ff}}^{-1}\mathbf{F_f}\\
+    \mathbf{\Delta_f}=\begin{Bmatrix}3.082\text{ mm}\\1.616\text{ mm}\end{Bmatrix}
+    \end{gathered}
+    \label{eq:Deltas}
+    \end{equation}
+</p>
+<p>
+    The remaining unknowns of the system are \(F_2,F_3,F_4,F_5\). These are the components of the \(\mathbf{F_s}\) vector in Equation\eqref{eq:Kffetc}. We will find these unknowns by multiplying the 4X2 \(\mathbf{K_{sf}}\) matrix with the \(\mathbf{\Delta_f}\) vector.
+    \begin{equation}
+    \mathbf{F_s}=\mathbf{K_{sf}\Delta_f}
+    \label{eq:Fs}
+    \end{equation}
+</p>
+<p>
+    <figure class="center">
+        <img  src="./IMAGES/Ksf.svg" width =400/> 	
+    </figure>
+</p>
+<p>
+    \begin{equation}
+    \mathbf{F_s}=\begin{bmatrix}
+    -84852.8 & -84852.8\\
+-84852.8 & -84852.8\\
+-98995.0 & 98995.0\\
+98995.0 & -98995.0
+    \end{bmatrix}\begin{Bmatrix}
+    3.082\\1.616
+    \end{Bmatrix}=\begin{Bmatrix}
+    -398677.8\text{ N}\\-398677.8\text{ N}\\-145106.9\text{ N}\\145106.9\text{ N}
+    \end{Bmatrix}
+    \label{eq:Fs2}
+    \end{equation}
+</p>
+<p>
+    The components of \(\mathbf{F_s}\) in Equation\eqref{eq:Fs2} are the support reactions in 2,3,4,5 directions.
+</p>
+<p>
+    <a style="text-align:left" href="./index.html">HOME</a>
+</p>
+</body>
+</html>

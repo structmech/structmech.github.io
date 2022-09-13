@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<style>
+    p{
+        max-width: 800px;
+        min-width: 100px;
+        background-color: rgb(203, 226, 234);
+        text-align: justify;
+    }
+</style>
+<head>
+    <meta charset="utf-8">
+    <title>math.js | basic usage</title>
+    <script src="https://unpkg.com/mathjs@11.0.1/lib/browser/math.js"></script>
+  </head>
+<body>
+<canvas id="meshCanvas" width="800" height="400"
+style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+
+<script>
+var canvas = document.getElementById("meshCanvas");
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "rgb(70, 226, 234)";
+ctx.fillRect(70,150,150,75);
+class Node {
+    constructor(code1, code2, x,y) {
+      this.code1 = code1;
+      this.code2 = code2;
+      this.x=x;
+      this.y=y;
+    }
+}
+class Element{
+    constructor(node1,node2,E,A){
+        this.node1=node1;
+        this.node2=node2;
+        this.E=E;this.A=A;
+        this.x1=node1.x;this.y1=node1.y;
+        this.x2=node2.x;this.y2=node2.y;
+        this.L=math.sqrt(math.pow((this.y2-this.y1),2)+math.pow((this.x2-this.x1),2));
+        this.theta=math.atan((this.y2-this.y1)/(this.x2-this.x1));
+        this.c=math.cos(this.theta);this.s=math.sin(this.theta);
+        
+        this.testM = math.matrix([[0, 1], [2, 3], [4, 5]]);
+        this.kg= math.matrix([[this.c*this.c, this.s*this.c,-this.c*this.c,-this.s*this.c],
+        [this.s*this.c, this.s*this.s,-this.s*this.c,-this.s*this.s],
+        [-this.c*this.c,-this.s*this.c,this.c*this.c,this.s*this.c],
+        [-this.c*this.s,-this.s*this.s,this.c*this.s,this.s*this.s]]);
+        this.kg = math.multiply((this.E*this.A/this.L),this.kg)
+    }
+}
+const n1 = new Node(0,0,0,0);
+const n2 = new Node(1,0,5000,7000);
+const e1= new Element(n1,n2,2E5,15000);
+console.log('The length of e1 is ',e1.L);
+console.log('The angle of e1 is ',e1.theta*180/math.pi);
+console.log('The size of kg of e1 is ',e1.testM.get([1,0]));
+</script>
+</body>
+</html>
