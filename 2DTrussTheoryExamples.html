@@ -65,7 +65,7 @@
 <p>
     <strong>Case 1:</strong>
     <figure class="center">
-      <img  src="./IMAGES/Case1truss.svg" width="300"/> 
+      <img  src="./IMAGES/2DTRUSSTHEORY/Case1truss.svg" width="300"/> 
       <figcaption> <b>Fig. 1.</b> Horizontal displacement of node 2</figcaption>	
     </figure>
 </p>
@@ -85,7 +85,7 @@
  <p>
     <strong>Case 2:</strong>
     <figure class="center">
-      <img  src="./IMAGES/Case2truss.svg" width="250"/> 
+      <img  src="./IMAGES/2DTRUSSTHEORY/Case2truss.svg" width="250"/> 
       <figcaption> <b>Fig. 2.</b> Vertical displacement of node 2</figcaption>	
     </figure>
 </p>
@@ -105,7 +105,7 @@
 <p>
     <strong>Case 3:</strong>
     <figure class="center">
-      <img  src="./IMAGES/Case3truss.svg" width="250"/> 
+      <img  src="./IMAGES/2DTRUSSTHEORY/Case3truss.svg" width="250"/> 
       <figcaption> <b>Fig. 3.</b> Horizontal displacement of node 1</figcaption>	
     </figure>
 </p>
@@ -125,7 +125,7 @@
 <p>
     <strong>Case 4:</strong>
     <figure class="center">
-      <img  src="./IMAGES/Case4truss.svg" width="250"/> 
+      <img  src="./IMAGES/2DTRUSSTHEORY/Case4truss.svg" width="250"/> 
       <figcaption> <b>Fig. 4.</b> Vertical displacement of node 1</figcaption>	
     </figure>
 </p>
@@ -188,7 +188,7 @@ In Equation\eqref{eq:Kffetc}, \(\mathbf{F_f}\) contains the components of the ex
 <p>
     <strong>Example 1:</strong>
     <figure class="center">
-      <img  src="./IMAGES/TrussEx1.svg" width="275"/> 
+      <img  src="./IMAGES/2DTRUSSTHEORY/TrussEx1.svg" width="275"/> 
       <figcaption> <b>Fig. 5.</b> Truss system under external loading</figcaption>	
     </figure>
 </p>
@@ -197,7 +197,7 @@ In Equation\eqref{eq:Kffetc}, \(\mathbf{F_f}\) contains the components of the ex
 </p>
 <p>
     <figure class="center">
-      <img  src="./IMAGES/TrussEx1Dofs.svg" width="300"/> 
+      <img  src="./IMAGES/2DTRUSSTHEORY/TrussEx1Dofs.svg" width="300"/> 
       <figcaption> <b>Fig. 6.</b> Element and displacement numbers</figcaption>	
     </figure>
 </p>
@@ -205,14 +205,14 @@ In Equation\eqref{eq:Kffetc}, \(\mathbf{F_f}\) contains the components of the ex
 Next, using Equation\eqref{eq:forceDispMatrix} we write down the stiffness matrices of the members 0 and 1 together with the displacement numbers belonging to these elements. For element 0 the element angle of inclination is \(45^{\circ}\) and for element 1 the angle is \(135^{\circ}\). These angles start from the horizontal line going through the node with the smaller node number and increase in the counterclockwise direction. These angles correspond to the \(c\) and \(s\) values of \(c=s=\sqrt{2}/2\) for element 0 and \(c=-\sqrt{2}/2,\hspace{0.5em}s=\sqrt{2}/2\) for element 1. 
 
     <figure class="center">
-      <img  src="./IMAGES/StiffnessesEx1.svg" width =700/> 
+      <img  src="./IMAGES/2DTRUSSTHEORY/StiffnessesEx1.svg" width =700/> 
       <figcaption> <b>Fig. 7.</b> Element stiffness matrices (Example 1)</figcaption>	
     </figure>
 </p>
 <p>
     In this example both members have the same length and elasticity modulus, so \(E_0=E_1=E\) and \(L_0=L_1=L=5000\sqrt{2}\text{ mm}\). In the system of Fig. 5, the unknowns are the displacement of node 2 and the support reactions at the nodes 0 and 1. The forces acting on the node 2 in 0 and 1 directions are given as \(600\cos{25}=543.79 kN\) and \(600\sin{25}=253.57kN\) respectively. This leads to the following \(\mathbf{F_f}\), \(\mathbf{\Delta_f}\) vectors and the \(\mathbf{K_{ff}}\) matrix.
     <figure class="center">
-        <img  src="./IMAGES/FfDeltafKff.svg" width =700/> 
+        <img  src="./IMAGES/2DTRUSSTHEORY/FfDeltafKff.svg" width =700/> 
         <figcaption> <b>Fig. 8.</b> \(\mathbf{K_{ff}},\mathbf{\Delta_f},\mathbf{F_f}\) for Example 1
         </figcaption>	
       </figure>
@@ -237,7 +237,7 @@ Next, using Equation\eqref{eq:forceDispMatrix} we write down the stiffness matri
 </p>
 <p>
     <figure class="center">
-        <img  src="./IMAGES/Ksf.svg" width =400/> 	
+        <img  src="./IMAGES/2DTRUSSTHEORY/Ksf.svg" width =400/> 	
     </figure>
 </p>
 <p>
@@ -251,12 +251,57 @@ Next, using Equation\eqref{eq:forceDispMatrix} we write down the stiffness matri
     3.082\\1.616
     \end{Bmatrix}=\begin{Bmatrix}
     -398677.8\text{ N}\\-398677.8\text{ N}\\-145106.9\text{ N}\\145106.9\text{ N}
+    \end{Bmatrix}=\begin{Bmatrix}
+    F_2\\F_3\\F_4\\F_5
     \end{Bmatrix}
     \label{eq:Fs2}
     \end{equation}
 </p>
 <p>
-    The components of \(\mathbf{F_s}\) in Equation\eqref{eq:Fs2} are the support reactions in 2,3,4,5 directions.
+    The components of \(\mathbf{F_s}\) in Equation\eqref{eq:Fs2} are the support reactions in 2,3,4,5 directions. Once these support reactions are known, we have all the forces acting on the nodes of the structure. From here we can calculate the axial forces in all the elements. A negative sign of the calculated axial force indicates the member being under compression.
+</p>
+<p>
+    <strong>Element 0:
+    </strong>
+    <figure class="center">
+        <img  src="./IMAGES/2DTRUSSTHEORY/Element0.svg" width =120/> 	
+        <figcaption> <b>Fig. 9.</b> Equilibrium of element 0</figcaption>
+    </figure>
+    
+</p>
+<p>
+    \begin{equation*}
+    N_0=F_{2}\cos\theta_0+F_{3}\sin\theta_0=-398677.8\cos{45^{\circ}}-398677.8\sin{45^{\circ}}=-563815.6\text{ N}
+    \end{equation*}
+</p>
+<p>
+    \(N_0\) was drawn as a compressive force in Fig. 9. However, the equilibrium equation based on this direction gave us a negative \(N_0\) which means that \(N_0\) is actually in the opposite direction and the bar is under tensile force.\(\Rightarrow N_0=-(F_{2}\cos\theta_0+F_{3}\sin\theta_0)=563815.6\text{ N (tension)}\)
+</p>
+<p>
+    <strong>Element 1:
+    </strong>
+    <figure class="center">
+        <img  src="./IMAGES/2DTRUSSTHEORY/Element1.svg" width =150/> 	
+        <figcaption> <b>Fig. 10.</b> Equilibrium of element 1</figcaption>
+    </figure>
+</p>
+<p>
+    \begin{equation*}
+    N_1+F_5\cos(\theta_1-90^{\circ})-F_4\cos(180^{\circ}-\theta_1)=0
+    \end{equation*}
+    \begin{equation*}
+    \begin{split}
+    N_1&=-F_5\sin\theta_1+F_4(-\cos\theta_1)\\
+    &=-(F_4\cos\theta_1+F_5\sin\theta_1)=-(-145106.9\cos{135^{\circ}}+145106.9\sin{135^{\circ}})=-205212.2\text{ N (compression)}
+    \end{split}
+    \end{equation*}
+</p>
+<p>
+	<strong>References</strong><br>
+</p>
+<p>
+	McGuire, William; Gallagher, Richard H.; and Ziemian, Ronald D., "Matrix Structural Analysis, 2nd Edition" (2000). Faculty Books. 7.
+https://digitalcommons.bucknell.edu/books/7
 </p>
 <p>
     <a style="text-align:left" href="./index.html">HOME</a>
