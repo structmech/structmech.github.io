@@ -297,7 +297,181 @@ Next, using Equation\eqref{eq:forceDispMatrix} we write down the stiffness matri
     \end{equation*}
 </p>
 <p>
+	<strong>Temperature Effect</strong><br>
+    Next we are going to analyze the displacements and support reactions in a 2D truss under concentrated force and temperature change. When a truss element is subjected to temperature change, it tends to change its length by an amount \(\Delta L=L\alpha \Delta T\) where \(\alpha \) is the thermal expansion coefficient and \(L\) is the initial length of the truss element. When the expansion/contraction of the truss element is constrained by the supports and the other connected truss elements, there will be a reaction force \(F=\frac{EA}{L}\Delta L=\frac{EA}{L} L\alpha\Delta T\). This reaction force is calculated as in Equation\eqref{eq:FT}.
+    \begin{equation}
+    F=EA\alpha\Delta T
+    \label{eq:FT}
+    \end{equation} 
+</p>
+<p>
+    <strong>Example 2:</strong>
+    <figure class="center">
+      <img  src="./IMAGES/2DTRUSSTHEORY/TrussEx2.svg" width="275"/> 
+      <figcaption> <b>Fig. 11.</b> Truss system under temperature increase and external loading</figcaption>	
+    </figure>
+</p>
+<p>
+    In Example 2 all the members have the elasticity modulus of \(E=2\cdot 10^5MPa\), the cross-sectional area of \(A=5000mm^2\), and the thermal expansion coefficient of \(\alpha=1.2\cdot 10^{-5}\frac{mm}{mm\cdot ^{\circ}C} \). The entire structure goes through a temperature increase of \(15^{\circ}C\). We start numbering the node displacements from the unconstrained displacements. The nodes 2 and 3 are free to move in both horizontal and vertical directions whereas the node 1 is only free to move in the horizontal direction. The displacement of node 0 is constrained in both directions. Fig. 12 shows the element and displacement numbers for the system in Fig. 11.
+</p>
+<p>
+    <figure class="center">
+      <img  src="./IMAGES/2DTRUSSTHEORY/TrussEx2Dofs.svg" width="300"/> 
+      <figcaption> <b>Fig. 12.</b> Element and displacement numbers</figcaption>	
+    </figure>
+</p>
+<p>
+    Next, the element stiffness matrices are generated using Equation \eqref{eq:forceDispMatrix}. The following table gives a list of elements, their lengths, angles of inclination and the corresponding sine and cosine values.
+</p>
+<p>
+    <table style="text-align: center">
+        <tr>
+          <th style="border-left: solid 1px">Element number</th>
+          <th style="border-left: solid 1px">Angle</th>
+          <th style="border-left: solid 1px">Sine</th>
+          <th style="border-left: solid 1px">Cosine</th>
+          <th style="border-right: solid 1px; 
+          border-left: solid 1px">Length[mm]</th>
+        </tr>
+        <tr>
+          <td style="border-left: solid 1px">0</td>
+          <td style="border-left: solid 1px">\(\pi/2\)</td>
+          <td style="border-left: solid 1px">1</td>
+          <td style="border-left: solid 1px">0</td>
+          <td style="border-right: solid 1px; 
+          border-left: solid 1px">5000</td>
+        </tr>
+        <tr>
+          <td style="border-left: solid 1px">1</td>
+          <td style="border-left: solid 1px">\(\pi/4\)</td>
+          <td style="border-left: solid 1px">\(\sqrt{2}/2\)</td>
+          <td style="border-left: solid 1px">\(\sqrt{2}/2\)</td>
+          <td style="border-right: solid 1px; 
+          border-left: solid 1px">7071</td>
+        </tr>
+        <tr>
+            <td style="border-left: solid 1px">2</td>
+            <td style="border-left: solid 1px">\(3\pi/4\)</td>
+            <td style="border-left: solid 1px">\(\sqrt{2}/2\)</td>
+            <td style="border-left: solid 1px">\(-\sqrt{2}/2\)</td>
+            <td style="border-right: solid 1px; 
+            border-left: solid 1px">7071</td>
+        </tr>
+        <tr>
+            <td style="border-left: solid 1px">3</td>
+            <td style="border-left: solid 1px" >\(\pi/2\)</td>
+            <td style="border-left: solid 1px">1</td>
+            <td style="border-left: solid 1px">0</td>
+            <td style="border-right: solid 1px; 
+            border-left: solid 1px">5000</td>
+        </tr>
+        <tr>
+            <td style="border-left: solid 1px">4</td>
+            <td style="border-left: solid 1px">0</td>
+            <td style="border-left: solid 1px">0</td>
+            <td style="border-left: solid 1px">1</td>
+            <td style="border-right: solid 1px; 
+            border-left: solid 1px">5000</td>
+        </tr>
+      </table>
+</p>
+<p>
+    The element stiffness matrices and their combination in the system stiffness matrix \(\mathbf{K}\) are displayed in Fig. 13
+</p>
+<p>
+    <figure class="center">
+      <img  src="./IMAGES/2DTRUSSTHEORY/StiffnessesEx2.svg" width="700"/> 
+      <figcaption> <b>Fig. 13.</b> Element and system stiffness matrices</figcaption>	
+    </figure>
+</p>
+<p>
+    In Fig. 13, the yellow and green parts of the \(\mathbf{K}\) matrix are \(\mathbf{K_{ff}}\) and \(\mathbf{K_{sf}}\) respectively. In order to calculate the unknown displacements we need to first find the right hand side of the equation \([\mathbf{K}]\lbrace \mathbf{U}\rbrace=\lbrace \mathbf{F}\rbrace\). The right hand side is a combination of the 5 kN concentrated force and the temperature effect. We can express this as \(\mathbf{F=F_T+F_C}\). \(\mathbf{F_C}\) is shown in Eq.\eqref{eq:FC}
+</p>
+<p>
+    \begin{equation}
+    \mathbf{F_C}=\begin{Bmatrix}
+    0\\0\\5000\cos(25)\\5000\sin(25)\\0\\F_5\\F_6\\F_7
+    \end{Bmatrix}=\begin{Bmatrix}
+    0\\0\\4532\\2113\\0\\F_5\\F_6\\F_7
+    \end{Bmatrix}=\begin{Bmatrix}
+    \lbrace \mathbf{F_{C,f}}\rbrace \\ \lbrace \mathbf{F_{C,s}}\rbrace
+    \end{Bmatrix}
+    \label{eq:FC}
+    \end{equation}
+</p>
+<p>
+    In Eq.\eqref{eq:FC}, \(\mathbf{F_{C,f}}\) consists of the first five rows of \(\mathbf{F_C}\) and \(\mathbf{F_{C,s}}\) consists of the last three rows of \(\mathbf{F_C}\). In order to find \(\mathbf{F_T}\), we need to find the forces acting on each truss member because of the temperature change. The \(\mathbf{F_T}\) vector consists of the forces acting on the nodes caused by the temperature change. So at the end we need to sum up all the forces acting on each node in each direction. Figure 14 shows the forces acting on each element because of the temperature change.
+</p>
+<p>
+    <figure class="center">
+      <img  src="./IMAGES/2DTRUSSTHEORY/Ftemp.svg" width="700"/> 
+      <figcaption> <b>Fig. 14.</b> Forces due to temperature change</figcaption>	
+    </figure>
+</p>
+<p>
+    <figure class="center">
+      <img  src="./IMAGES/2DTRUSSTHEORY/FtempNodes.svg" width="700"/> 
+      <figcaption> <b>Fig. 15.</b> Node forces due to temperature change</figcaption>	
+    </figure>
+</p>
+By summing up the forces at each node in Fig. 15 we obtain the \(\mathbf{F_T}\) vector in Eq.\eqref{eq:FT2}.
+<p>
+    \begin{equation}
+    \mathbf{F_T}=\begin{Bmatrix}
+    F_{0,T}\\F_{1,T}\\F_{2,T}\\F_{3,T}\\F_{4,T}\\F_{5,T}\\F_{6,T}\\F_{7,T}
+    \end{Bmatrix}=\begin{Bmatrix}
+    -307279\\307279\\307279\\307279\\127279\\-127279\\-307279\\-307279
+    \end{Bmatrix}=\begin{Bmatrix}
+    \lbrace \mathbf{F_{T,f}}\rbrace \\ \lbrace \mathbf{F_{T,s}}\rbrace
+    \end{Bmatrix}
+    \label{eq:FT2}
+    \end{equation}
+</p>
+
+<p>
+    In Eq.\eqref{eq:FT2}, \(\mathbf{F_{T,f}}\) consists of the first five rows of \(\mathbf{F_T}\) and \(\mathbf{F_{T,s}}\) consists of the last three rows of \(\mathbf{F_T}\).<br>At this point we have enough information to calculate the unknown displacements \(\mathbf{U_f}\). Using the equation \(\mathbf{[K_{ff}]\lbrace U_f\rbrace=\lbrace F_{T,f}\rbrace+\lbrace F_{C,f}\rbrace}\), we obtain \(\mathbf{U_f}\) as in Eq.\eqref{eq:Uf}
+</p>
+<p>
+    \begin{equation}
+    \begin{split}
+    \mathbf{\lbrace U_f\rbrace}&=\mathbf{[K_{ff}]^{-1}(\lbrace F_{T,f}\rbrace+\lbrace F_{C,f}\rbrace)}\\
+    &=\begin{Bmatrix}
+    U_0\\U_1\\U_2\\U_3\\U_4
+    \end{Bmatrix}=\begin{Bmatrix}
+    0.076175\\0.9\\0.976175\\0.887908\\0.976175
+    \end{Bmatrix}
+    \end{split}
+    \label{eq:Uf}
+    \end{equation}
+</p>
+<p>
+    Now we have enough information to calculate the support reactions \(\mathbf{F_{C,s}}\).<br> We know that \(\mathbf{F_s}=\mathbf{F_{T,s}}+\mathbf{F_{C,s}}=\mathbf{[K_{sf}]\lbrace U_f\rbrace}\) and \(\mathbf{F_{T,s}}\) is already known. So using \(\mathbf{F_{C,s}}=\mathbf{[K_{sf}]\lbrace U_f\rbrace}-\mathbf{F_{T,s}}\) we obtain \(\mathbf{F_{C,s}}\) as in Eq.\eqref{eq:FCs}
+</p>
+<p>
+    \begin{equation}
+    \begin{split}
+    \mathbf{F_{C,s}}&=\mathbf{[K_{sf}]\lbrace U_f\rbrace}-\mathbf{F_{T,s}}\\
+    &=\begin{bmatrix}
+    0 & 0 & -70711 & -70711 & 0 \\
+    0 & -200000 & -70711 & -70711 & 0 \\
+    70711 & -70711 & 0 & -200000 & -70711
+    \end{bmatrix}\begin{Bmatrix}
+    0.076175\\0.9\\0.976175\\0.887908\\0.976175
+    \end{Bmatrix}-\begin{Bmatrix}
+    -127279\\-307279\\-307279
+    \end{Bmatrix}=\begin{Bmatrix}
+    -4532\\-4532\\2418
+    \end{Bmatrix}
+    \end{split}
+    \label{eq:FCs}
+    \end{equation}
+</p>
+We could find the exact same result for support reactions by writing down the force and moment equilibrium equations of the system. This is because the system is statically determinate and the temperature changes do not create additional support reactions. 
+<p>
 	<strong>References</strong><br>
+</p>
+<p>
+    
 </p>
 <p>
 	McGuire, William; Gallagher, Richard H.; and Ziemian, Ronald D., "Matrix Structural Analysis, 2nd Edition" (2000). Faculty Books. 7.

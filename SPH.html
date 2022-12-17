@@ -1,0 +1,127 @@
+<head>
+<style>
+p{
+  max-width: 800px;
+  min-width: 100px;
+  background-color: white;
+  text-align: justify;
+}
+code{
+    max-width: 800px;
+    font-size:medium;
+}
+ol{
+    max-width: 800px;
+    text-align: left;
+}
+.left, .right, .center {
+	display: inline-block;
+}
+figure figcaption {
+	text-align: center;
+}
+.MathJax_Display {
+	text-align: center !important;
+}
+</style>
+<!-- The below two lines are for MathJax. -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!--The below lines are for equation numbering-->
+<script>
+    MathJax = {
+      tex: {
+        tags: 'ams'  // should be 'ams', 'none', or 'all'
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<!-- The below lines are for highlightjs-->
+<!-- For different styles check https://cdnjs.com/libraries/highlight.js -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/intellij-light.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+  <h1 style="max-width: 800px; font-size: medium;text-align: left;"><a href="./index.html">HOME</a> <br>
+  </h1>
+<h1 style="max-width: 800px; font-size: medium;text-align: center;">SMOOTHED-PARTICLE HYDRODYNAMICS (SPH) <br>
+</h1>
+<p>
+  \begin{equation}
+  V_c=
+    \begin{cases}
+    0.66(\rho_w)^{1/3}\sqrt{f_c^{\prime}}bd\sqrt{\displaystyle\frac{2}{1+0.004d}} & \text{if $\sqrt{\displaystyle\frac{2}{1+0.004d}}< 1 $}\\
+    0.66(\rho_w)^{1/3}\sqrt{f_c^{\prime}}bd & \text{otherwise}
+    \end{cases}       
+\end{equation}
+$$ V_c=0.17\lambda_R\sqrt{f_c^{\prime}}bd  $$
+Solve equations
+\begin{equation}
+\frac{d\stackrel{\rightarrow}{v}}{dt}=\frac{\partial\stackrel{\rightarrow}{v}}{\partial t}+(\stackrel{\rightarrow}{v}\cdot \nabla)\stackrel{\rightarrow}{v}=-\frac{\nabla P}{\rho}+visc+...
+\label{eq:1}
+\end{equation}
+\begin{equation}
+\rho d\theta =ds\Rightarrow \rho=\frac{ds}{d\theta}\Rightarrow \frac{1}{\rho} = \frac{d\theta}{ds}
+\label{eq:oneOverRho}
+\end{equation}
+\begin{equation}
+\tan d\theta =\frac{dv}{dx}\Rightarrow d\theta=\tan^{-1}\Big(\frac{dv}{dx}\Big) \Rightarrow \frac{d\theta}{dx}= \frac{1}{1+(\frac{dv}{dx})^2}\frac{d^2v}{dx^2}
+\label{eq:tanDtheta}
+\end{equation}
+<p>The variables \(\rho,d\theta,ds,dv,dx\) are shown in Fig. 1 where the beam lies in the \(x-y\) plane and the \(z\) direction is perpendicular to the plane of the beam. 
+    <figure class="center">
+      <img  src="https://raw.githubusercontent.com/structmech/images/main/radCurvature.svg" width="300"/> 
+      <figcaption> <b>Fig. 1.</b> Elastic curve</figcaption>	
+    </figure>
+    </p>
+</p>
+<p>
+    In Eqs.\eqref{eq:dssq} and \eqref{eq:tanDtheta}, \(\Big(\frac{dv}{dx}\Big)^2\) can be neglected due to its small order of magnitude which leads to Eq.\eqref{eq:afterNeglect}
+    \begin{equation}
+\frac{ds}{dx}=1,\quad\frac{d\theta}{dx}=v^{\prime\prime}\Rightarrow \frac{d\theta}{ds}=\frac{d\theta}{dx}\frac{dx}{ds}=\frac{d\theta}{dx}\frac{1}{\frac{ds}{dx}}\Rightarrow \boxed{\frac{1}{\rho}=\frac{d\theta}{ds}=v^{\prime\prime}}
+\label{eq:afterNeglect}
+\end{equation}
+</p>
+<p>
+The distribution of the normal stress along the height of the beam cross-section is shown in Fig. 2 where the stresses are in the elastic range. In fig. 2 \(N.A.\) denotes the neutral axis where the normal stress is zero.
+<figure class="center">
+    <img  src="https://raw.githubusercontent.com/structmech/images/main/stressDistElastic.svg" width="350"/> 
+    <figcaption> <b>Fig. 2.</b> Normal stress distribution</figcaption>	
+  </figure>
+
+</p>
+
+<p>
+    The bending moment \(M_z\) that causes the stresses in Fig. 2 can be calculated as in Eq.\eqref{eq:Mz} where \(E\) is the modulus of elasticity and \(\epsilon_x\) is the normal strain.
+    \begin{equation}
+    M_z=-\int_A\sigma_x y dA=-E\int_A\epsilon_x y dA
+    \label{eq:Mz}
+    \end{equation}
+</p>
+<p>
+    The relationship between the normal strain \(\epsilon_x\) and the radius of curvature \(\rho\) is illustrated in Fig. 3 where the height of the beam is exaggerated.
+
+    <figure class="center">
+        <img  src="https://raw.githubusercontent.com/structmech/images/main/exaggerated.svg" width="350"/> 
+        <figcaption> <b>Fig. 3.</b> Normal strains above and below the neutral axis due to bending</figcaption>	
+      </figure>
+</p>
+<p>
+In Fig. 3 the dashed line is shorter than the netral axis after bending due to the compressive strains above \(N.A.\) where \(y>0\). The length of a fiber along the beam's length is denoted with \(L_1\). The initial length of this fiber before bending is equal to \(L_0\) which is the length of the neutral axis where the normal strain is equal to zero. Using these lengths before and after bending, the normal strain be calculated as in Eq.\eqref{eq:epsx}
+\begin{equation}
+\epsilon_x=\frac{L_1-L_0}{L_0}=\frac{(\rho-y)\theta-\rho\theta}{\rho\theta}=-\frac{y}{\rho}
+\label{eq:epsx}
+\end{equation}
+Inserting Eq.\eqref{eq:afterNeglect} in Eq.\eqref{eq:epsx} and Eq.\eqref{eq:epsx} in Eq.\eqref{eq:Mz} we obtain Eq.\eqref{eq:Mz2}
+\begin{equation}
+M_z=-\int_A\sigma_x y dA=-E\int_A\Big(-\frac{y}{\rho}\Big) y dA=\frac{EI_z}{\rho}=EI_zv^{\prime\prime}
+\label{eq:Mz2}
+\end{equation}
+</p>
+<p>
+  <a style="text-align:left" href="./index.html">HOME</a>
+</p>
+</body>
