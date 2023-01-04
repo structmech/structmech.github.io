@@ -38,7 +38,7 @@
         </script>
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
 </head>
-<body>
+<body onload="javascript:StopRestart()">
     <h1 style="max-width: 800px; font-size: medium;text-align: left;"><a href="./index.html">HOME</a> <br>
     </h1>
     <h1 style="max-width: 800px; font-size: medium;text-align: center;">Free Vibration of a Mass-Spring System <br>
@@ -158,6 +158,9 @@
       		context2.stroke();
 			draw();
 		}
+        function StopRestart(){
+            restart();stop();restart();
+        }
 		//setTimeout(restart(), 10000);//Tries to prevent the initial straight line when the webpage opens
 		document.getElementById('restart').click();
 		//restart();
