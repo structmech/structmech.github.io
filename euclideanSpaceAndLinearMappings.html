@@ -1,0 +1,100 @@
+<head>
+<style>
+p{
+  max-width: 800px;
+  min-width: 100px;
+  background-color: white;
+  text-align: justify;
+}
+code{
+    max-width: 800px;
+    font-size:medium;
+}
+ol{
+    max-width: 800px;
+    text-align: left;
+}
+.left, .right, .center {
+	display: inline-block;
+}
+figure figcaption {
+	text-align: center;
+}
+.MathJax_Display {
+	text-align: center !important;
+}
+</style>
+<!-- The below two lines are for MathJax. -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<!--The below lines are for equation numbering-->
+<script>
+    MathJax = {
+      tex: {
+        tags: 'ams'  // should be 'ams', 'none', or 'all'
+      }
+    };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+<!-- The below lines are for highlightjs-->
+<!-- For different styles check https://cdnjs.com/libraries/highlight.js -->
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/intellij-light.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/languages/python.min.js"></script>
+<script>hljs.highlightAll();</script>
+</head>
+<body>
+  <h1 style="max-width: 800px; font-size: medium;text-align: left;"><a href="./index.html">HOME</a> <br>
+  </h1>
+<h1 style="max-width: 800px; font-size: medium;text-align: center;">EXERCISES IN EUCLIDEAN SPACE AND LINEAR MAPPINGS <br>
+</h1>
+<p>
+<b>Exercise 1:</b> Verify that given \((a_1, a_2, …, a_n)\in\mathbb{R}^n\), the set of all \((x_1, x_2, ..., x_n)\in \mathbb{R}^n\) such that \(a_1x_1+a_2x_2+ … + a_nx_n=0\) is a subspace of \(\mathbb{R}^n\).
+<p>
+<b>Solution:</b> Let \(S\) be the set of all \((x_1, x_2, ..., x_n)\in \mathbb{R}^n\) such that \(a_1x_1+a_2x_2+ … + a_nx_n=0\). For any \(\mathbf{v}\in S\), \(\mathbf{v}\in\mathbb{R}^n\) therefore \(S\subset \mathbb{R}^n\). 
+<p>
+Let \(\mathbf{v}, \mathbf{w}\) be any two vectors in \(S\). Then \(\mathbf{v}+\mathbf{w} = (v_1+w_1, v_2+w_2, …, v_n+w_n)\). It follows that
+
+\begin{equation*}(a_1(v_1+w_1) +a_2(v_2+w_2)+ … +a_n(v_n+w_n)) =(a_1v_1+a_2v_2+ … +a_nv_n+a_1w_1+a_2w_2+…+a_nw_n)\end{equation*}
+
+Because \(\mathbf{v}\in S, a_1v_1+a_2v_2+…+a_nv_n=0\) and because \(\mathbf{w}\in S, a_1w_1+a_2w_2+…+a_nw_n=0\). Therefore, \( (a_1(v_1+w_1) + a_2 (v_2+w_2) + … +a_n(v_n+w_n)) = 0 \quad \) which means that \(\mathbf{v}+\mathbf{w}\in S\). Therefore, \(S\) is closed under the operation of vector addition.
+<p>
+Let \(\alpha \in\mathbb{R}\) be any real number. Then, \(\alpha\mathbf{v}=(\alpha v_1, \alpha v_2, …, \alpha v_n)\) and \(a_1\alpha v_1 +a_2 \alpha v_2 + … +a_n \alpha v_n =\alpha(a_1v_1+a_2v_2+…+a_nv_n)=0\). This shows that \(\alpha \mathbf{v}\in S\) and \(S\) is closed under the operation of multiplication by a scalar.
+<p>
+Because \(S\) is a subset of \(\mathbb{R}^n\) and it is closed under the operations of vector addition and multiplication by a scalar, we conclude that \(S\) is a subspace of \(\mathbb{R}^n\).
+
+<p>
+<b>Exercise 2:</b> Prove that the intersection of two subspaces of \(\mathbb{R}^n\) is also a subspace.
+<p>
+<b>Solution:</b> Let \(S_1,S_2\) be subspaces of \(\mathbb{R}^n\) and let \(S=S_1\cap S_2\). For any \(\mathbf{v}\in S\), \(\mathbf{v}\in \mathbb{R}^n\), therefore \(S\) is a subset of \(\mathbb{R}^n\). 
+<p>
+For any \(\mathbf{v},\mathbf{w}\in S\), \(\mathbf{v},\mathbf{w}\in S_1\) and \(\mathbf{v},\mathbf{w}\in S_2\). Since \(S_1\) and \(S_2\) are both subspaces, \(\mathbf{v}+\mathbf{w}\in S_1\) and \(\mathbf{v}+\mathbf{w}\in S_2\) which means that \(\mathbf{v}+\mathbf{w}\in S\). Therefore, \(S\) is closed under the operation of vector addition.
+<p>
+Let \(\alpha\in\mathbb{R}\) be any real number. Because \(\mathbf{v}\in S_1\),  \(\mathbf{v}\in S_2\) and \(S_1,S_2\) are closed under the operation of multiplication by a scalar, \(\alpha v\in S_1\) and \(\alpha v\in S_2\). It follows that \(\alpha v\in S\) and \(S\) is closed under the operation of multiplication by a scalar. 
+<p>
+We conclude that since \(S\) is a subset of \(\mathbb{R}^n\) and \(S\) is closed under the operations of vector addition and multiplication by a scalar, \(S\) is a subspace.
+
+<p>
+<b>Exercise 3:</b> Let \(V\) and \(W\) be subspaces of \(\mathbb{R}^n\), denote by \(V+W\) the following set:
+\begin{equation*}V+W=\lbrace \mathbf{v+w}:\mathbf{v}\in V \text{ and }\mathbf{w}\in W \rbrace\end{equation*}
+Show that \(V+W\) is a subspace of \(\mathbb{R}^n\).
+
+
+<p>
+<b>Solution:</b> Let \(\mathbf{v_0}+\mathbf{w_0}\in V+W\) with \(\mathbf{v_0}\in V\) and \(\mathbf{w_0}\in W\). Since \(V\) and \(W\) are subspaces of \(\mathbb{R}^n\), \(\mathbf{v_0}\in\mathbb{R}^n\), \(\mathbf{w_0}\in\mathbb{R}^n\) and \(\mathbf{v_0+w_0}\in\mathbb{R}^n\) and \(V+W\subset \mathbb{R}^n\).
+ 
+<p>
+Let \(\mathbf{v_1}+\mathbf{w_1}\in V+W\) with \(\mathbf{v_1}\in V\) and \(\mathbf{w_1}\in W\). Then \(\mathbf{v_0} + \mathbf{w_0}+\mathbf{v_1}+\mathbf{w_1}=(\mathbf{v_0}+\mathbf{v_1})+(\mathbf{w_0}+\mathbf{w_1})\). Because \(V\) and \(W\) are subspaces of \(\mathbb{R}^n\), they are closed under vector addition. It follows that, \(\mathbf{v_0}+\mathbf{v_1}\in V,\) \(\mathbf{w_0}+\mathbf{w_1}\in W,\) \(\mathbf{v_0}+\mathbf{w_0}+\mathbf{v_1}+\mathbf{w_1}\in V+W\) and \(V+W\) is closed under vector addition.
+
+<p>
+Let \(\alpha\in\mathbb{R}\). Then \(\alpha(\mathbf{v_0}+\mathbf{w_0})=\alpha \mathbf{v_0}+\alpha\mathbf{w_0}\). Since \(V, W\) are closed under multiplication by a scalar, \(\alpha \mathbf{v_0}\in V\) and \(\alpha\mathbf{w_0}\in W\) which means that \(\alpha(\mathbf{v_0}+\mathbf{w_0})\in V+W\) and \(V+W\) is closed under multiplication by a scalar as well. Therefore, \(V+W\) is a subspace of \(\mathbb{R}^n\).
+
+
+<p>
+  <a style="text-align:left" href="./index.html">HOME</a>
+</p>
+</body>
+
+
+
