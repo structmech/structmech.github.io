@@ -4,7 +4,7 @@ p{
   max-width: 800px;
   min-width: 100px;
   background-color: white;
-  text-align: justify;
+  text-align: left;
 }
 code{
     max-width: 800px;
@@ -76,21 +76,32 @@ Let \(\alpha\in\mathbb{R}\) be any real number. Because \(\mathbf{v}\in S_1\),  
 We conclude that since \(S\) is a subset of \(\mathbb{R}^n\) and \(S\) is closed under the operations of vector addition and multiplication by a scalar, \(S\) is a subspace.
 
 <p>
-<b>Exercise 3:</b> Let \(V\) and \(W\) be subspaces of \(\mathbb{R}^n\), denote by \(V+W\) the following set:
-\begin{equation*}V+W=\lbrace \mathbf{v+w}:\mathbf{v}\in V \text{ and }\mathbf{w}\in W \rbrace\end{equation*}
-Show that \(V+W\) is a subspace of \(\mathbb{R}^n\).
-
+<b>Exercise 4:</b> If \(V\) is the set of all \((x,y,z)\in \mathbb{R}^3\) such that  \(x+2y=0\), and \(x+y=3z\), show that \(V\) is a subspace of \(\mathbb{R}^3\).
 
 <p>
-<b>Solution:</b> Let \(\mathbf{v_0}+\mathbf{w_0}\in V+W\) with \(\mathbf{v_0}\in V\) and \(\mathbf{w_0}\in W\). Since \(V\) and \(W\) are subspaces of \(\mathbb{R}^n\), \(\mathbf{v_0}\in\mathbb{R}^n\), \(\mathbf{w_0}\in\mathbb{R}^n\) and \(\mathbf{v_0+w_0}\in\mathbb{R}^n\) and \(V+W\subset \mathbb{R}^n\).
+<b>Solution:</b> \(V\) is clearly a subset of \(\mathbb{R}^3\).
  
 <p>
-Let \(\mathbf{v_1}+\mathbf{w_1}\in V+W\) with \(\mathbf{v_1}\in V\) and \(\mathbf{w_1}\in W\). Then \(\mathbf{v_0} + \mathbf{w_0}+\mathbf{v_1}+\mathbf{w_1}=(\mathbf{v_0}+\mathbf{v_1})+(\mathbf{w_0}+\mathbf{w_1})\). Because \(V\) and \(W\) are subspaces of \(\mathbb{R}^n\), they are closed under vector addition. It follows that, \(\mathbf{v_0}+\mathbf{v_1}\in V,\) \(\mathbf{w_0}+\mathbf{w_1}\in W,\) \(\mathbf{v_0}+\mathbf{w_0}+\mathbf{v_1}+\mathbf{w_1}\in V+W\) and \(V+W\) is closed under vector addition.
+Let \(\overrightarrow{x_0}=(x_0,y_0,z_0),\overrightarrow{x_1}=(x_1,y_1,z_1)\in V\). Then \(\overrightarrow{x_0}+\overrightarrow{x_1}=(x_0+x_1,y_0+y_1,z_0+z_1)\) and \(x_0+2y_0=0\), \(x_1+2y_1=0\), \(x_0+y_0=3z_0\) and \(x_1+y_1=3z_1\).
 
 <p>
-Let \(\alpha\in\mathbb{R}\). Then \(\alpha(\mathbf{v_0}+\mathbf{w_0})=\alpha \mathbf{v_0}+\alpha\mathbf{w_0}\). Since \(V, W\) are closed under multiplication by a scalar, \(\alpha \mathbf{v_0}\in V\) and \(\alpha\mathbf{w_0}\in W\) which means that \(\alpha(\mathbf{v_0}+\mathbf{w_0})\in V+W\) and \(V+W\) is closed under multiplication by a scalar as well. Therefore, \(V+W\) is a subspace of \(\mathbb{R}^n\).
+It follows that \((x_0+x_1)+2(y_0+y_1)=(x_0+2y_0)+(x_1+2y_1)=0\).
 
+<p>
+Also, \((x_0+x_1)+(y_0+y_1)=(x_0+y_0)+(x_1+y_1)=3z_0+3z_1=3(z_0+z_1)\). Therefore, \(\overrightarrow{x_0}+\overrightarrow{x_1}\in V\).
 
+<p>
+Let \(\alpha\in\mathbb{R}\). Then \(\alpha\overrightarrow{x_0}=(\alpha x_0, \alpha y_0, \alpha z_0)\) and  \(\alpha x_0+2\alpha y_0=\alpha(x_0+2y_0)=0\).
+<p>
+Also, \(\alpha x_0+\alpha y_0=\alpha(x_0+y_0)=\alpha(3 z_0)=3\alpha z_0\). Therefore, \(\alpha\overrightarrow{x_0}\in V\). Since \(V\) is a subset of \(\mathbb{R}^3\) and \(V\) is closed under the operations of vector addition and multiplication by a scalar, \(V\) is a subspace.
+<p>
+
+<b>Exercise 5:</b> Let \(D_0\) be the set of all differentiable real-valued functions on \([0,1]\) such that \(f(0)=f(1)=0\). If \(f+g\) and \(\alpha f\) are defined by \((f+g)(x)=f(x)+g(x)\) and \((\alpha f)(x)=\alpha f(x)\) show that \(D_0\) is a vector space. Would \(D_0\) still be a vetor space if the condition \(f(0)=f(1)=0\) is replaced by \(f(0)=0\) and \(f(1)=1\)?
+<p>
+<b>Solution:</b> Let \(f,g\in D_0\). Then \((f+g)(x)=f(x)+g(x)\in\mathbb{R}\) and \((f+g)^{\prime}(x)=f^{\prime}(x)+g^{\prime}(x)\) \(\forall x\in[0,1]\). Clearly, \(f+g\) is a differentiable real-valued function on \([0,1]\). Also, \((f+g)(0)=f(0)+g(0)=0+0=0\) and \((f+g)(1)=f(1)+g(1)=0+0=0\) which means that \(f+g\in D_0\).
+<p>
+Let \(\alpha\in\mathbb{R}\). Then \((\alpha f)(x)=\alpha f(x)\in \mathbb{R}\) and \((\alpha f)^{\prime}(x)=\alpha f^{\prime}(x)\) \(\forall x\in[0,1]\). Clearly, \((\alpha f)\) is a differentiable real-valued function on \([0,1]\) . Also, \((\alpha f)(0)=\alpha f(0)=\alpha 0=0\) and \((\alpha f)(1)=\alpha f(1)=\alpha 0=0\) which means that \((\alpha f)\in D_0\).
+<p>On the other hand, if \(f(0)=0,\text{ }f(1)=1\text{ }\forall f\in D_0\) and \(f,g\in D_0\), then \((f+g)(1)=f(1)+g(1)=1+1=2\) which means that \(f+g\not\in D_0\), \(D_0\) is not closed under vector addition and \(D_0\) is not a vector space.  
 <p>
   <a style="text-align:left" href="./index.html">HOME</a>
 </p>
